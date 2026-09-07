@@ -3,723 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexusPedia | Ensiklopedia Pengetahuan Universal</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <title>Spektrum Universal Ilmu Pengetahuan: PAUD hingga S3</title>
     <style>
         :root {
-            --bg-primary: #f8fafc;
-            --bg-card: #ffffff;
-            --bg-sidebar: #f1f5f9;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --primary-light: #eff6ff;
-            --border: #e2e8f0;
-            --accent: #0ea5e9;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            --transition: all 0.25s ease;
+            --primary: #0f172a;
+            --accent: #0284c7;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --border: #cbd5e1;
+            --badge-bg: #e0f2fe;
+            --badge-text: #0369a1;
         }
-
-        [data-theme="dark"] {
-            --bg-primary: #0b0f19;
-            --bg-card: #131b2e;
-            --bg-sidebar: #0f172a;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --primary: #3b82f6;
-            --primary-hover: #60a5fa;
-            --primary-light: rgba(59, 130, 246, 0.15);
-            --border: #1e293b;
-            --accent: #38bdf8;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
         body {
-            background-color: var(--bg-primary);
-            color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
         }
-
-        /* HEADER NAV */
-        header {
-            background: var(--bg-card);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 0 2rem;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: var(--shadow);
-        }
-
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-        }
-
-        .logo-icon {
-            background: var(--primary);
-            color: #fff;
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 20px;
-        }
-
-        .logo-text {
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: var(--text-main);
-        }
-        .logo-text span { color: var(--primary); }
-
-        .search-container {
-            flex: 0 1 450px;
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            background: var(--bg-sidebar);
-            border: 1px solid var(--border);
-            padding: 10px 16px 10px 42px;
-            border-radius: 12px;
-            color: var(--text-main);
-            font-family: inherit;
-            font-size: 14px;
-            outline: none;
-            transition: var(--transition);
-        }
-
-        .search-input:focus {
-            border-color: var(--primary);
-            background: var(--bg-card);
-            box-shadow: 0 0 0 3px var(--primary-light);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-            font-size: 16px;
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .btn-icon {
-            background: var(--bg-sidebar);
-            border: 1px solid var(--border);
-            color: var(--text-main);
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .btn-icon:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        /* MAIN LAYOUT */
-        .main-layout {
-            display: grid;
-            grid-template-columns: 260px 1fr 300px;
-            flex: 1;
-            max-width: 1500px;
-            width: 100%;
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            gap: 2rem;
-            padding: 2rem;
-        }
-
-        @media (max-width: 1200px) {
-            .main-layout { grid-template-columns: 240px 1fr; }
-            .right-sidebar { display: none; }
-        }
-        @media (max-width: 768px) {
-            .main-layout { grid-template-columns: 1fr; padding: 1rem; }
-            .left-sidebar { display: none; }
-        }
-
-        /* SIDEBARS & PANELS */
-        .sidebar {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: var(--card);
+            padding: 40px;
             border-radius: 16px;
-            padding: 1.5rem;
-            height: fit-content;
-            position: sticky;
-            top: 90px;
-            box-shadow: var(--shadow);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
-
-        .sidebar-title {
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-        }
-
-        .nav-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 14px;
-            border-radius: 10px;
-            color: var(--text-muted);
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .nav-item:hover, .nav-item.active {
-            background: var(--primary-light);
+        h1 {
             color: var(--primary);
+            text-align: center;
+            margin-bottom: 5px;
+            font-size: 2.3rem;
         }
-
-        /* CONTENT AREA */
-        .content-area {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2.5rem;
-            box-shadow: var(--shadow);
-            min-height: 80vh;
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
         }
-
-        .article-header {
-            margin-bottom: 2rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 1.5rem;
-        }
-
-        .article-category {
-            display: inline-block;
-            background: var(--primary-light);
-            color: var(--primary);
-            font-size: 12px;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 6px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        .article-title {
-            font-size: 32px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            margin-bottom: 8px;
-            line-height: 1.2;
-        }
-
-        .article-meta {
-            font-size: 13px;
-            color: var(--text-muted);
-            display: flex;
-            gap: 15px;
-        }
-
-        .article-body {
-            font-size: 16px;
-            line-height: 1.8;
-            color: var(--text-main);
-        }
-
-        .article-body p {
-            margin-bottom: 1.25rem;
-        }
-
-        .article-body h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin: 2rem 0 1rem 0;
-            color: var(--text-main);
-            border-left: 4px solid var(--primary);
-            padding-left: 10px;
-        }
-
-        .info-box {
-            background: var(--bg-sidebar);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-        }
-
-        .info-box-title {
-            font-weight: 700;
-            font-size: 15px;
-            margin-bottom: 8px;
-            color: var(--primary);
-        }
-
-        /* RIGHT SIDEBAR / ARTICLE LIST */
-        .trending-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .trending-item {
-            padding: 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .trending-item:hover {
-            background: var(--bg-sidebar);
-        }
-
-        .trending-item h4 {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .trending-item span {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        /* EDITOR MODAL */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(4px);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            padding: 1rem;
-        }
-
-        .modal-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            width: 100%;
-            max-width: 600px;
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-        }
-
-        .modal-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.25rem;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 6px;
-            color: var(--text-muted);
-        }
-
-        .form-control {
-            width: 100%;
-            background: var(--bg-sidebar);
-            border: 1px solid var(--border);
-            padding: 10px 14px;
-            border-radius: 8px;
-            color: var(--text-main);
-            font-family: inherit;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .form-control:focus {
-            border-color: var(--primary);
-        }
-
-        textarea.form-control {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .modal-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 1.5rem;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            border: none;
-            transition: var(--transition);
-        }
-
-        .btn-primary {
-            background: var(--primary);
+        h2 {
             color: #fff;
+            background-color: var(--accent);
+            margin-top: 40px;
+            font-size: 1.2rem;
+            padding: 10px 15px;
+            border-radius: 8px;
         }
-        .btn-primary:hover { background: var(--primary-hover); }
-
-        .btn-secondary {
-            background: var(--bg-sidebar);
-            color: var(--text-main);
-            border: 1px solid var(--border);
+        ul {
+            margin: 8px 0;
+            padding-left: 20px;
         }
-        .btn-secondary:hover { border-color: var(--text-muted); }
-
-        /* SEARCH RESULTS DROPDOWN */
-        .search-results {
-            position: absolute;
-            top: 110%;
-            left: 0; right: 0;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            max-height: 300px;
-            overflow-y: auto;
-            display: none;
-            z-index: 100;
+        li {
+            margin-bottom: 6px;
+            font-size: 0.95rem;
         }
-
-        .search-result-item {
-            padding: 12px 16px;
-            border-bottom: 1px solid var(--border);
-            cursor: pointer;
-            transition: var(--transition);
+        strong {
+            color: #0f172a;
         }
-        .search-result-item:hover { background: var(--primary-light); }
-        .search-result-item h5 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
-        .search-result-item span { font-size: 12px; color: var(--text-muted); }
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #64748b;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
     </style>
 </head>
-<body data-theme="dark">
+<body>
 
-    <header>
-        <div class="logo-area" onclick="loadArticle('semesta')">
-            <div class="logo-icon">N</div>
-            <div class="logo-text">Nexus<span>Pedia</span></div>
-        </div>
+<div class="container">
+    <h1>Spektrum Universal Ilmu Pengetahuan</h1>
+    <div class="subtitle">Pemetaan Komprehensif dari Kriteria Dasar (PAUD) hingga Strata 3 (Doktoral)</div>
 
-        <div class="search-container">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="searchInput" class="search-input" placeholder="Cari topik pengetahuan (contoh: Kecerdasan Buatan, Lubang Hitam)..." oninput="handleSearch(this.value)">
-            <div id="searchResults" class="search-results"></div>
-        </div>
-
-        <div class="header-actions">
-            <button class="btn-icon" onclick="openModal()" title="Tambah Artikel Baru">➕</button>
-            <button class="btn-icon" onclick="toggleTheme()" id="themeBtn" title="Ganti Tema">☀️</button>
-        </div>
-    </header>
-
-    <div class="main-layout">
-        <!-- LEFT SIDEBAR: KATEGORI -->
-        <aside class="sidebar left-sidebar">
-            <div class="sidebar-title">Kategori Ilmu</div>
-            <ul class="nav-list" id="categoryList">
-                <li class="nav-item active" onclick="filterCategory('all', this)">📚 Semua Artikel</li>
-                <li class="nav-item" onclick="filterCategory('Sains', this)">🔬 Sains & Alam</li>
-                <li class="nav-item" onclick="filterCategory('Teknologi', this)">💻 Teknologi & AI</li>
-                <li class="nav-item" onclick="filterCategory('Sejarah', this)">🏛️ Sejarah Dunia</li>
-                <li class="nav-item" onclick="filterCategory('Biologi', this)">🧬 Kehidupan & Biologi</li>
-            </ul>
-        </aside>
-
-        <!-- CONTENT AREA -->
-        <main class="content-area" id="mainContent">
-            <!-- Dynamic article rendered here -->
-        </main>
-
-        <!-- RIGHT SIDEBAR: TRENDING -->
-        <aside class="sidebar right-sidebar">
-            <div class="sidebar-title">Artikel Populer</div>
-            <div class="trending-list" id="trendingList">
-                <!-- Dynamic trending list -->
-            </div>
-        </aside>
+    <h2>1. Kriteria Dasar (Usia Dini / PAUD & TK)</h2>
+    <div>
+        <span class="badge">Fondasi Sensorik & Motorik</span>
+        <ul>
+            <li><strong>Motorik & Jati Diri:</strong> Pengenalan anggota tubuh, koordinasi motorik kasar (berlari, melompat) dan halus (memegang pensil, meronce).</li>
+            <li><strong>Kognitif Awal:</strong> Pengenalan warna primer, bentuk geometri dasar, ukuran (besar-kecil), dan konsep angka 1–10.</li>
+            <li><strong>Sosialisasi Dasar:</strong> Tata krama sederhana (terima kasih, tolong, maaf) dan interaksi sosial awal.</li>
+        </ul>
     </div>
 
-    <!-- MODAL TAMBAH ARTIKEL -->
-    <div class="modal-overlay" id="articleModal">
-        <div class="modal-card">
-            <div class="modal-title">Tambah / Kontribusi Artikel Baru</div>
-            <div class="form-group">
-                <label class="form-label">Judul Artikel</label>
-                <input type="text" id="newTitle" class="form-control" placeholder="Masukkan judul...">
-            </div>
-            <div class="form-group">
-                <label class="form-label">Kategori</label>
-                <select id="newCategory" class="form-control">
-                    <option value="Sains">Sains & Alam</option>
-                    <option value="Teknologi">Teknologi & AI</option>
-                    <option value="Sejarah">Sejarah Dunia</option>
-                    <option value="Biologi">Kehidupan & Biologi</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Ringkasan Singkat</label>
-                <input type="text" id="newSummary" class="form-control" placeholder="Pengantar singkat...">
-            </div>
-            <div class="form-group">
-                <label class="form-label">Isi Artikel Lengkap</label>
-                <textarea id="newBody" class="form-control" placeholder="Tulis penjelasan lengkap di sini... (Gunakan baris baru untuk paragraf berbeda)"></textarea>
-            </div>
-            <div class="modal-actions">
-                <button class="btn btn-secondary" onclick="closeModal()">Batal</button>
-                <button class="btn btn-primary" onclick="saveNewArticle()">Simpan Artikel</button>
-            </div>
-        </div>
+    <h2>2. Pendidikan Dasar (SD / Kelas 1 - 6)</h2>
+    <div>
+        <span class="badge">Literasi & Numerasi Fundamental</span>
+        <ul>
+            <li><strong>Bahasa & Komunikasi:</strong> Membaca lancar, menulis, tata bahasa dasar (EYD), dan pengantar bahasa asing.</li>
+            <li><strong>Matematika Dasar:</strong> Aritmatika (penjumlahan, pengurangan, perkalian, pembagian), pecahan sederhana, serta pengukuran waktu dan panjang.</li>
+            <li><strong>Sains & Sosial Fondasi:</strong> IPA dasar (makhluk hidup, wujud benda, lingkungan) dan IPS dasar (peta lokal, sejarah nasional sederhana, kewarganegaraan).</li>
+        </ul>
     </div>
 
-    <script>
-        let articles = JSON.parse(localStorage.getItem('nexuspedia_articles')) || [
-            {
-                id: 'semesta',
-                title: 'Alam Semesta & Kosmologi Modern',
-                category: 'Sains',
-                summary: 'Studi tentang asal-usul, evolusi, struktur besar, dan takdir akhir dari alam semesta.',
-                body: [
-                    'Alam semesta mencakup segala sesuatu yang ada, termasuk seluruh ruang, waktu, bentuk materi, energi, momentum, serta hukum fisik dan konstanta yang mengatur keberadaannya. Meskipun skala alam semesta secara keseluruhan tidak diketahui secara pasti, ukuran alam semesta teramati dapat diukur.',
-                    'Teori paling dominan yang menjelaskan kelahiran alam semesta adalah Dentuman Besar (Big Bang), yang terjadi sekitar 13,8 miliar tahun lalu. Pada titik permulaan ini, seluruh materi dan energi terkonsentrasi dalam keadaan yang sangat panas dan padat sebelum mengalami ekspansi yang sangat cepat.',
-                    'Studi modern mengenai kosmos melibatkan pengamatan teleskop canggih seperti James Webb Space Telescope (JWST), mengungkap misteri materi gelap (dark matter) dan energi gelap (dark energy) yang mendominasi sebagian besar komposisi alam semesta.'
-                ],
-                views: 1420
-            },
-            {
-                id: 'ai',
-                title: 'Kecerdasan Buatan (Artificial Intelligence)',
-                category: 'Teknologi',
-                summary: 'Cabang ilmu komputer yang dikhususkan untuk memecahkan masalah kognitif umumnya dihubungkan dengan kecerdasan manusia.',
-                body: [
-                    'Kecerdasan buatan (AI) adalah simulasi proses kecerdasan manusia oleh mesin, terutama sistem komputer. Proses ini meliputi pembelajaran (perolehan informasi dan aturan untuk menggunakan informasi), penalaran (menggunakan aturan untuk mencapai kesimpulan perkiraan atau pasti), dan koreksi mandiri.',
-                    'Perkembangan AI saat ini didorong oleh pembelajaran mendalam (deep learning) dan jaringan saraf tiruan (neural networks) berskala besar. Model bahasa besar (LLM) telah merevolusi cara manusia berinteraksi dengan teknologi, memungkinkan otomatisasi kreatif, analisis data tingkat lanjut, dan sistem otonom.',
-                    'Meskipun menawarkan efisiensi luar biasa, perkembangan AI memicu perdebatan etika global terkait privasi data, hak cipta, dampak ketenagakerjaan, dan keamanan masa depan umat manusia.'
-                ],
-                views: 2890
-            },
-            {
-                id: 'lubang-hitam',
-                title: 'Lubang Hitam (Black Hole)',
-                category: 'Sains',
-                summary: 'Wilayah dalam ruang waktu di mana gravitasi begitu kuat sehingga apa pun — bahkan partikel dan radiasi elektromagnetik seperti cahaya — tidak dapat lolos darinya.',
-                body: [
-                    'Teori relativitas umum Albert Einstein memperkirakan bahwa massa yang cukup kompak dapat mengubah bentuk ruang waktu untuk membentuk lubang hitam. Batas wilayah dari tidak ada pelarian yang disebut sebagai horizon peristiwa (event horizon).',
-                    'Meskipun horizon peristiwa memiliki efek besar pada nasib dan keadaan objek yang melintasinya, ia tidak memiliki fitur permukaan yang dapat dideteksi secara lokal menurut relativitas umum. Dalam banyak hal, lubang hitam bertindak seperti benda hitam yang sempurna karena tidak memantulkan cahaya.',
-                    'Lubang hitam dari massa bintang terbentuk ketika bintang-bintang sangat masif runtuh di akhir siklus hidupnya. Setelah lubang hitam terbentuk, ia dapat terus tumbuh dengan menyerap massa dari sekitarnya.'
-                ],
-                views: 1950
-            },
-            {
-                id: 'dna',
-                title: 'Asam Deoksiribonukleat (DNA)',
-                category: 'Biologi',
-                summary: 'Polimer heliks ganda yang membawa instruksi genetik yang digunakan dalam pertumbuhan, perkembangan, fungsi, dan reproduksi seluruh organisme hidup.',
-                body: [
-                    'DNA dan asam ribonukleat (RNA) adalah asam nukleat. Bersama dengan protein, lipid, dan karbohidrat kompleks (polisakarida), asam nukleat adalah salah satu dari empat jenis makromolekul utama yang esensial untuk semua bentuk kehidupan yang diketahui.',
-                    'Sebagian besar molekul DNA terdiri dari dua untai biopolimer yang melingkar satu sama lain membentuk heliks ganda. Dua untai nukleotida ini menyimpan informasi genetik menggunakan empat basa nukleotida: adenina (A), timina (T), guanina (G), dan sitosina (C).',
-                    'Penemuan struktur heliks ganda DNA pada tahun 1953 oleh James Watson, Francis Crick, Rosalind Franklin, dan Maurice Wilkins menjadi tonggak sejarah paling penting dalam biologi molekuler modern.'
-                ],
-                views: 980
-            }
-        ];
+    <h2>3. Pendidikan Menengah Pertama (SMP / Kelas 7 - 9)</h2>
+    <div>
+        <span class="badge">Transisi Berpikir Abstrak & Analitis</span>
+        <ul>
+            <li><strong>Sains Terpadu:</strong> Fisika (gerak, energi), Biologi (sistem organ, ekosistem), Kimia (zat dan campuran), serta pengantar astronomi.</li>
+            <li><strong>Matematika Menengah:</strong> Aljabar, persamaan linear, geometri ruang, dan statistika deskriptif.</li>
+            <li><strong>Ilmu Sosial & Humaniora:</strong> Sejarah peradaban dunia, geografi regional, pengantar ekonomi pasar, dan pendidikan Pancasila.</li>
+        </ul>
+    </div>
 
-        let currentArticleId = 'semesta';
-        let currentFilter = 'all';
+    <h2>4. Pendidikan Menengah Atas (SMA / SMK / Kelas 10 - 12)</h2>
+    <div>
+        <span class="badge">Spesialisasi Jalur Studi & Kejuruan</span>
+        <ul>
+            <li><strong>MIPA (Matematika & Ilmu Alam):</strong> Kalkulus dasar, trigonometri lanjut, fisika modern, kimia organik/anorganik, biologi sel dan genetika.</li>
+            <li><strong>IPS (Ilmu Sosial):</strong> Sosiologi kelompok, struktur ekonomi makro dan mikro, sejarah kontemporer, dan geografi geosfer.</li>
+            <li><strong>Vokasi / Kejuruan (SMK):</strong> Keterampilan teknis terapan spesifik (teknik komputer, akuntansi, otomotif, desain).</li>
+        </ul>
+    </div>
 
-        window.onload = function() {
-            renderArticle(currentArticleId);
-            renderTrending();
-        };
+    <h2>5. Strata 1 (S1) - Sarjana (Undergraduate)</h2>
+    <div>
+        <span class="badge">Penguasaan Landasan Disiplin Ilmu & Keprofesian</span>
+        <ul>
+            <li><strong>Disiplin Ilmu Murni & Terapan:</strong> Pendalaman teori rigor (Fisika, Kedokteran, Hukum, Teknik Sipil, Ilmu Komputer, Ekonomi Pembangunan, Sastra).</li>
+            <li><strong>Metodologi & Skripsi:</strong> Pelatihan metode penelitian ilmiah standar, magang profesional, dan penyusunan Tugas Akhir/Skripsi.</li>
+        </ul>
+    </div>
 
-        function renderArticle(id) {
-            const art = articles.find(a => a.id === id);
-            if (!art) return;
-            currentArticleId = id;
-            art.views = (art.views || 0) + 1;
-            saveToStorage();
+    <h2>6. Strata 2 (S2) - Magister / Master (Graduate)</h2>
+    <div>
+        <span class="badge">Spesialisasi Tingkat Lanjut & Analisis Profesional</span>
+        <ul>
+            <li><strong>Kajian Mendalam & Kepemimpinan:</strong> Fokus pada bidang spesifik sempit (misal: Kecerdasan Buatan, Hukum Bisnis Internasional, Spesialis Bedah).</li>
+            <li><strong>Riset & Tesis:</strong> Analisis studi kasus empiris tingkat lanjut, publikasi jurnal ilmiah, dan penyusunan Tesis pemecahan masalah.</li>
+        </ul>
+    </div>
 
-            const container = document.getElementById('mainContent');
-            let bodyHtml = art.body.map(p => `<p>${p}</p>`).join('');
+    <h2>7. Strata 3 (S3) - Doktoral / Ph.D. (Puncak Akademik)</h2>
+    <div>
+        <span class="badge">Penciptaan Pengetahuan Baru & Epistemologi</span>
+        <ul>
+            <li><strong>Filsafat Ilmu & Teori Tinggi:</strong> Mempelajari epistemologi mendalam dan merumuskan temuan atau teori baru (*novum*) bagi peradaban.</li>
+            <li><strong>Disertasi & Sidang Terbuka:</strong> Penelitian mandiri bertahun-tahun, kontribusi orisinal global, dan pertahanan akademik di depan dewan guru besar.</li>
+        </ul>
+    </div>
 
-            container.innerHTML = `
-                <div class="article-header">
-                    <span class="article-category">${art.category}</span>
-                    <h1 class="article-title">${art.title}</h1>
-                    <div class="article-meta">
-                        <span>Ditinjau oleh Tim NexusPedia</span>
-                        <span>Dilihat: ${art.views} kali</span>
-                    </div>
-                </div>
-                <div class="info-box">
-                    <div class="info-box-title">Ringkasan Cepat</div>
-                    <p style="margin:0; font-size:14px;">${art.summary}</p>
-                </div>
-                <div class="article-body">
-                    ${bodyHtml}
-                </div>
-            `;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+    <div class="footer">
+        <p>&copy; 2026 Spektrum Hierarki Ilmu Pengetahuan Universal</p>
+    </div>
+</div>
 
-        function renderTrending() {
-            const list = document.getElementById('trendingList');
-            const sorted = [...articles].sort((a,b) => (b.views || 0) - (a.views || 0));
-            list.innerHTML = sorted.slice(0, 5).map(a => `
-                <div class="trending-item" onclick="renderArticle('${a.id}')">
-                    <h4>${a.title}</h4>
-                    <span>${a.category} • ${a.views || 0} pembaca</span>
-                </div>
-            `).join('');
-        }
-
-        function filterCategory(cat, element) {
-            currentFilter = cat;
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            element.classList.add('active');
-
-            const filtered = cat === 'all' ? articles : articles.filter(a => a.category === cat);
-            if (filtered.length > 0) {
-                renderArticle(filtered[0].id);
-            }
-        }
-
-        function handleSearch(query) {
-            const resBox = document.getElementById('searchResults');
-            if (!query.trim()) {
-                resBox.style.display = 'none';
-                return;
-            }
-
-            const match = articles.filter(a => 
-                a.title.toLowerCase().includes(query.toLowerCase()) || 
-                a.summary.toLowerCase().includes(query.toLowerCase())
-            );
-
-            if (match.length === 0) {
-                resBox.style.display = 'none';
-                return;
-            }
-
-            resBox.innerHTML = match.map(a => `
-                <div class="search-result-item" onclick="selectSearchResult('${a.id}')">
-                    <h5>${a.title}</h5>
-                    <span>${a.category}</span>
-                </div>
-            `).join('');
-            resBox.style.display = 'block';
-        }
-
-        function selectSearchResult(id) {
-            renderArticle(id);
-            document.getElementById('searchResults').style.display = 'none';
-            document.getElementById('searchInput').value = '';
-        }
-
-        function toggleTheme() {
-            const body = document.body;
-            const btn = document.getElementById('themeBtn');
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.setAttribute('data-theme', 'light');
-                btn.innerText = '🌙';
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                btn.innerText = '☀️';
-            }
-        }
-
-        function openModal() {
-            document.getElementById('articleModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('articleModal').style.display = 'none';
-        }
-
-        function saveNewArticle() {
-            const title = document.getElementById('newTitle').value.trim();
-            const category = document.getElementById('newCategory').value;
-            const summary = document.getElementById('newSummary').value.trim();
-            const bodyRaw = document.getElementById('newBody').value.trim();
-
-            if (!title || !summary || !bodyRaw) {
-                alert('Harap isi semua kolom dengan lengkap!');
-                return;
-            }
-
-            const id = title.toLowerCase().replace(/[^a-z0-9]/g, '-');
-            const bodyParagraphs = bodyRaw.split('\n').filter(p => p.trim() !== '');
-
-            const newArt = {
-                id,
-                title,
-                category,
-                summary,
-                body: bodyParagraphs,
-                views: 1
-            };
-
-            articles.push(newArt);
-            saveToStorage();
-            renderTrending();
-            closeModal();
-            renderArticle(id);
-
-            document.getElementById('newTitle').value = '';
-            document.getElementById('newSummary').value = '';
-            document.getElementById('newBody').value = '';
-        }
-
-        function saveToStorage() {
-            localStorage.setItem('nexuspedia_articles', JSON.stringify(articles));
-        }
-    </script>
 </body>
 </html>
