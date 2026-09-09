@@ -1,164 +1,283 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
+    <charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spektrum Universal Ilmu Pengetahuan: PAUD hingga S3</title>
+    <title>LautSegar - Pusat Penjualan Ikan Segar Berkualitas</title>
     <style>
-        :root {
-            --primary: #0f172a;
-            --accent: #0284c7;
-            --bg: #f8fafc;
-            --card: #ffffff;
-            --text: #1e293b;
-            --border: #cbd5e1;
-            --badge-bg: #e0f2fe;
-            --badge-text: #0369a1;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
+        /* Pengaturan Dasar CSS */
+        * {
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
+        body {
+            background-color: #f4f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #0077b6;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #90e0ef;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 119, 182, 0.7), rgba(0, 119, 182, 0.7)), url('https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 5rem 1rem;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            background: #00b4d8;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #0077b6;
+        }
+
         .container {
             max-width: 1200px;
-            margin: 0 auto;
-            background: var(--card);
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
-        h1 {
-            color: var(--primary);
+
+        .section-title {
             text-align: center;
-            margin-bottom: 5px;
-            font-size: 2.3rem;
+            margin-bottom: 2rem;
+            color: #03045e;
+            font-size: 2rem;
         }
-        .subtitle {
-            text-align: center;
-            color: #64748b;
-            margin-bottom: 40px;
-            font-size: 1.1rem;
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
-        h2 {
-            color: #fff;
-            background-color: var(--accent);
-            margin-top: 40px;
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            margin-bottom: 0.5rem;
+            color: #0077b6;
+        }
+
+        .product-info p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
             font-size: 1.2rem;
-            padding: 10px 15px;
+            font-weight: bold;
+            color: #e63946;
+            margin-bottom: 1rem;
+        }
+
+        .order-section {
+            background: #caf0f8;
+            padding: 3rem 1rem;
+            margin-top: 3rem;
             border-radius: 8px;
         }
-        ul {
-            margin: 8px 0;
-            padding-left: 20px;
+
+        .order-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
-        li {
-            margin-bottom: 6px;
-            font-size: 0.95rem;
+
+        .form-group {
+            margin-bottom: 1.2rem;
         }
-        strong {
-            color: #0f172a;
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
         }
-        .badge {
-            display: inline-block;
-            background-color: var(--badge-bg);
-            color: var(--badge-text);
-            padding: 3px 10px;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            margin-bottom: 8px;
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
-        .footer {
+
+        footer {
+            background: #03045e;
+            color: white;
             text-align: center;
-            margin-top: 50px;
-            font-size: 0.9rem;
-            color: #64748b;
-            border-top: 1px solid var(--border);
-            padding-top: 20px;
+            padding: 1.5rem;
+            margin-top: 3rem;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Spektrum Universal Ilmu Pengetahuan</h1>
-    <div class="subtitle">Pemetaan Komprehensif dari Kriteria Dasar (PAUD) hingga Strata 3 (Doktoral)</div>
+    <!-- Header / Navbar -->
+    <header>
+        <h1>🐟 LautSegar</h1>
+        <nav>
+            <a href="#">Beranda</a>
+            <a href="#katalog">Katalog Produk</a>
+            <a href="#pemesanan">Pesan Sekarang</a>
+        </nav>
+    </header>
 
-    <h2>1. Kriteria Dasar (Usia Dini / PAUD & TK)</h2>
-    <div>
-        <span class="badge">Fondasi Sensorik & Motorik</span>
-        <ul>
-            <li><strong>Motorik & Jati Diri:</strong> Pengenalan anggota tubuh, koordinasi motorik kasar (berlari, melompat) dan halus (memegang pensil, meronce).</li>
-            <li><strong>Kognitif Awal:</strong> Pengenalan warna primer, bentuk geometri dasar, ukuran (besar-kecil), dan konsep angka 1–10.</li>
-            <li><strong>Sosialisasi Dasar:</strong> Tata krama sederhana (terima kasih, tolong, maaf) dan interaksi sosial awal.</li>
-        </ul>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>Ikan Segar Langsung dari Nelayan</h2>
+        <p>Kualitas terbaik, kaya protein, diantar langsung ke rumah Anda setiap hari.</p>
+        <a href="#katalog" class="btn">Lihat Katalog</a>
+    </section>
+
+    <!-- Katalog Produk -->
+    <div class="container" id="katalog">
+        <h2 class="section-title">Pilihan Ikan Segar Kami</h2>
+        
+        <div class="product-grid">
+            <!-- Produk 1 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=500&q=80" alt="Ikan Kakap Merah">
+                <div class="product-info">
+                    <h3>Ikan Kakap Merah</h3>
+                    <p>Segar ditangkap dari laut lepas, daging tebal dan manis, cocok untuk dibakar atau digoreng.</p>
+                    <div class="price">Rp 65.000 / kg</div>
+                    <a href="#pemesanan" class="btn" style="display: block; text-align: center;">Pesan</a>
+                </div>
+            </div>
+
+            <!-- Produk 2 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=500&q=80" alt="Ikan Tuna">
+                <div class="product-info">
+                    <h3>Ikan Tuna Segar</h3>
+                    <p>Sumber protein tinggi dan asam lemak omega-3 yang baik untuk kesehatan jantung Anda.</p>
+                    <div class="price">Rp 85.000 / kg</div>
+                    <a href="#pemesanan" class="btn" style="display: block; text-align: center;">Pesan</a>
+                </div>
+            </div>
+
+            <!-- Produk 3 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1522720833758-66f1e72b642e?auto=format&fit=crop&w=500&q=80" alt="Ikan Bandeng">
+                <div class="product-info">
+                    <h3>Ikan Bandeng</h3>
+                    <p>Bandeng segar pilihan, bebas duri lunak (opsional), gurih dan empuk saat dimasak.</p>
+                    <div class="price">Rp 35.000 / kg</div>
+                    <a href="#pemesanan" class="btn" style="display: block; text-align: center;">Pesan</a>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <h2>2. Pendidikan Dasar (SD / Kelas 1 - 6)</h2>
-    <div>
-        <span class="badge">Literasi & Numerasi Fundamental</span>
-        <ul>
-            <li><strong>Bahasa & Komunikasi:</strong> Membaca lancar, menulis, tata bahasa dasar (EYD), dan pengantar bahasa asing.</li>
-            <li><strong>Matematika Dasar:</strong> Aritmatika (penjumlahan, pengurangan, perkalian, pembagian), pecahan sederhana, serta pengukuran waktu dan panjang.</li>
-            <li><strong>Sains & Sosial Fondasi:</strong> IPA dasar (makhluk hidup, wujud benda, lingkungan) dan IPS dasar (peta lokal, sejarah nasional sederhana, kewarganegaraan).</li>
-        </ul>
+    <!-- Formulir Pemesanan -->
+    <div class="order-section" id="pemesanan">
+        <div class="container" style="margin: 0 auto;">
+            <h2 class="section-title">Formulir Pemesanan Cepat</h2>
+            <div class="order-form">
+                <form>
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap</label>
+                        <input type="text" id="nama" placeholder="Masukkan nama Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telepon">Nomor WhatsApp / HP</label>
+                        <input type="tel" id="telepon" placeholder="Contoh: 081234567890" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="produk">Pilihan Ikan</label>
+                        <select id="produk">
+                            <option value="kakap">Ikan Kakap Merah - Rp 65.000/kg</option>
+                            <option value="tuna">Ikan Tuna Segar - Rp 85.000/kg</option>
+                            <option value="bandeng">Ikan Bandeng - Rp 35.000/kg</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="jumlah">Jumlah (kg)</label>
+                        <input type="number" id="jumlah" min="1" value="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Alamat Pengiriman</label>
+                        <textarea id="alamat" rows="3" placeholder="Masukkan alamat lengkap tujuan pengiriman" required></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Kirim Pesanan</button>
+                </form>
+            </div>
+        </div>
     </div>
 
-    <h2>3. Pendidikan Menengah Pertama (SMP / Kelas 7 - 9)</h2>
-    <div>
-        <span class="badge">Transisi Berpikir Abstrak & Analitis</span>
-        <ul>
-            <li><strong>Sains Terpadu:</strong> Fisika (gerak, energi), Biologi (sistem organ, ekosistem), Kimia (zat dan campuran), serta pengantar astronomi.</li>
-            <li><strong>Matematika Menengah:</strong> Aljabar, persamaan linear, geometri ruang, dan statistika deskriptif.</li>
-            <li><strong>Ilmu Sosial & Humaniora:</strong> Sejarah peradaban dunia, geografi regional, pengantar ekonomi pasar, dan pendidikan Pancasila.</li>
-        </ul>
-    </div>
-
-    <h2>4. Pendidikan Menengah Atas (SMA / SMK / Kelas 10 - 12)</h2>
-    <div>
-        <span class="badge">Spesialisasi Jalur Studi & Kejuruan</span>
-        <ul>
-            <li><strong>MIPA (Matematika & Ilmu Alam):</strong> Kalkulus dasar, trigonometri lanjut, fisika modern, kimia organik/anorganik, biologi sel dan genetika.</li>
-            <li><strong>IPS (Ilmu Sosial):</strong> Sosiologi kelompok, struktur ekonomi makro dan mikro, sejarah kontemporer, dan geografi geosfer.</li>
-            <li><strong>Vokasi / Kejuruan (SMK):</strong> Keterampilan teknis terapan spesifik (teknik komputer, akuntansi, otomotif, desain).</li>
-        </ul>
-    </div>
-
-    <h2>5. Strata 1 (S1) - Sarjana (Undergraduate)</h2>
-    <div>
-        <span class="badge">Penguasaan Landasan Disiplin Ilmu & Keprofesian</span>
-        <ul>
-            <li><strong>Disiplin Ilmu Murni & Terapan:</strong> Pendalaman teori rigor (Fisika, Kedokteran, Hukum, Teknik Sipil, Ilmu Komputer, Ekonomi Pembangunan, Sastra).</li>
-            <li><strong>Metodologi & Skripsi:</strong> Pelatihan metode penelitian ilmiah standar, magang profesional, dan penyusunan Tugas Akhir/Skripsi.</li>
-        </ul>
-    </div>
-
-    <h2>6. Strata 2 (S2) - Magister / Master (Graduate)</h2>
-    <div>
-        <span class="badge">Spesialisasi Tingkat Lanjut & Analisis Profesional</span>
-        <ul>
-            <li><strong>Kajian Mendalam & Kepemimpinan:</strong> Fokus pada bidang spesifik sempit (misal: Kecerdasan Buatan, Hukum Bisnis Internasional, Spesialis Bedah).</li>
-            <li><strong>Riset & Tesis:</strong> Analisis studi kasus empiris tingkat lanjut, publikasi jurnal ilmiah, dan penyusunan Tesis pemecahan masalah.</li>
-        </ul>
-    </div>
-
-    <h2>7. Strata 3 (S3) - Doktoral / Ph.D. (Puncak Akademik)</h2>
-    <div>
-        <span class="badge">Penciptaan Pengetahuan Baru & Epistemologi</span>
-        <ul>
-            <li><strong>Filsafat Ilmu & Teori Tinggi:</strong> Mempelajari epistemologi mendalam dan merumuskan temuan atau teori baru (*novum*) bagi peradaban.</li>
-            <li><strong>Disertasi & Sidang Terbuka:</strong> Penelitian mandiri bertahun-tahun, kontribusi orisinal global, dan pertahanan akademik di depan dewan guru besar.</li>
-        </ul>
-    </div>
-
-    <div class="footer">
-        <p>&copy; 2026 Spektrum Hierarki Ilmu Pengetahuan Universal</p>
-    </div>
-</div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 LautSegar. Hak Cipta Dilindungi. Menyediakan hasil perikanan terbaik untuk keluarga Anda.</p>
+    </footer>
 
 </body>
 </html>
